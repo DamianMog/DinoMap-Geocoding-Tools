@@ -2,6 +2,54 @@
 
 A collection of Python scripts for processing market data and error correction files, geocoding addresses, and generating shapefiles for the Dino Mapa project.
 
+
+### Quick Usage Guide:
+
+1. **Prepare the HTML File:**  
+   - Create a file named `site.html` containing a `<div>` with `id="marketList"` copied from [https://marketdino.pl/map](https://marketdino.pl/map).  
+   - A sample file with two locations is available in the repository.  
+
+2. **Download Required Scripts:**  
+   - Obtain `1st_step_HTML_to_SHP_and_others.py` and `2nd_step_Fixing_Incorrect_Locs.py`.  
+
+3. **Run the First Script:**  
+   - Place `site.html` and both scripts in the same directory.  
+   - Execute `1st_step_HTML_to_SHP_and_others.py`.  
+   - The following files will be generated:  
+     ```
+     invalid_locs_<current_date>.txt  
+     outputCleaned_<current_date>.txt  
+     outputRaw_<current_date>.txt  
+     dino_<current_date>.cpg  
+     dino_<current_date>.dbf  
+     dino_<current_date>.prj  
+     dino_<current_date>.shp  
+     dino_<current_date>.shx  
+     ```
+
+4. **Fix Incorrect Locations:**  
+   - Extract incorrect locations from `invalid_locs_<current_date>.txt`.  
+   - Use tools like:  
+     - [OpenStreetMap](https://www.openstreetmap.org/)  
+     - [Google Maps](https://www.google.pl/maps/)  
+     - [Geoportal Maps](https://mapy.geoportal.gov.pl/)  
+     - [Market Dino Map](https://marketdino.pl/map)  
+   - Alternatively, use the included `map_check.py` script to find the correct location via Geopy.  
+   - Manual corrections were made in Excel (sample Excel file included).  
+   - Copy the corrected data to a TXT file, replace tab characters with `"//"`, and save it as `Incorrect_checked.txt`.  
+
+5. **Run the Second Script:**  
+   - Provide the file path for `Incorrect_checked.txt` in `2nd_step_Fixing_Incorrect_Locs.py`.  
+   - Execute the script to generate a new SHP file with corrected locations and a new error file (if any issues remain).  
+
+6. **Handle Remaining Errors (if needed):**  
+   - If errors persist, repeat steps 4 and 5.  
+
+By following this process, you will obtain two SHP files, which can be further analyzed in GIS software such as QGIS.  
+
+
+
+
 ## Table of Contents
 
 - [Market Data Extraction and Geocoding Script](#market-data-extraction-and-geocoding-script)
